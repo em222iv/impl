@@ -1,4 +1,5 @@
 .idea/
 npm-debug.log
 .DS_Store
-react+redux/node_modules/
+react+flux/node_modules/
+backbone/node_modules/
