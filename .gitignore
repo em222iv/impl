@@ -3,3 +3,5 @@ npm-debug.log
 .DS_Store
 react+flux/node_modules/
 backbone/node_modules/
+cyclejs/node_modules/
+emberjs/node_modules/
