@@ -16,7 +16,7 @@ var MainSection = React.createClass({
 
   propTypes: {
     allTodos: ReactPropTypes.object.isRequired,
-    areAllComplete: ReactPropTypes.bool.isRequired
+    areAllComplete: ReactPropTypes.bool.isRequired,
   },
 
   /**
@@ -25,6 +25,8 @@ var MainSection = React.createClass({
   render: function() {
     // This section should be hidden by default
     // and shown when there are todos.
+
+
     if (Object.keys(this.props.allTodos).length < 1) {
       return null;
     }

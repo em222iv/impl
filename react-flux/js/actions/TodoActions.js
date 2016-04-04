@@ -78,7 +78,7 @@ var TodoActions = {
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_DESTROY_COMPLETED
     });
-  }
+  },
 
 };
 

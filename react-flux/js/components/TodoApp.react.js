@@ -14,9 +14,14 @@
 
 var Footer = require('./Footer.react');
 var Header = require('./Header.react');
+var LoginForm = require('./LoginForm.react');
+var AuthButton = require('./AuthButton.react');
 var MainSection = require('./MainSection.react');
 var React = require('react');
 var TodoStore = require('../stores/TodoStore');
+var UserStore = require('../stores/UserStore');
+var ReactPropTypes = React.PropTypes;
+var UserActions = require('../actions/UserActions');
 
 /**
  * Retrieve the current TODO data from the TodoStore
@@ -24,7 +29,8 @@ var TodoStore = require('../stores/TodoStore');
 function getTodoState() {
   return {
     allTodos: TodoStore.getAll(),
-    areAllComplete: TodoStore.areAllComplete()
+    areAllComplete: TodoStore.areAllComplete(),
+    loggedIn: UserStore.userLoggedIn(),
   };
 }
 
@@ -36,6 +42,7 @@ var TodoApp = React.createClass({
 
   componentDidMount: function() {
     TodoStore.addChangeListener(this._onChange);
+    UserStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
@@ -46,14 +53,33 @@ var TodoApp = React.createClass({
    * @return {object}
    */
   render: function() {
+
+    var authContent;
+    var authenticationEvent;
+    var footer;
+    var main;
+    if(this.state.loggedIn) {
+      authContent = <Header />
+      authenticationEvent = "logout";
+      footer = <Footer allTodos={this.state.allTodos} />;
+      main = <MainSection
+        allTodos={this.state.allTodos}
+        areAllComplete={this.state.areAllComplete}
+      />;
+    }
+    else {
+      authContent = <LoginForm />
+      authenticationEvent = "login";
+      footer = "";
+      main = "";
+    }
+
     return (
       <div>
-        <Header />
-        <MainSection
-          allTodos={this.state.allTodos}
-          areAllComplete={this.state.areAllComplete}
-        />
-        <Footer allTodos={this.state.allTodos} />
+        {authContent}
+        {main}
+        {footer}
+        <AuthButton event={authenticationEvent}/>
       </div>
     );
   },
@@ -63,7 +89,7 @@ var TodoApp = React.createClass({
    */
   _onChange: function() {
     this.setState(getTodoState());
-  }
+  },
 
 });
 
