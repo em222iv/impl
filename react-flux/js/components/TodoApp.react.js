@@ -14,13 +14,12 @@
 
 var Footer = require('./Footer.react');
 var Header = require('./Header.react');
-var LoginForm = require('./LoginForm.react');
+var LoginForm = require('./LoginForm.react.js');
 var AuthButton = require('./AuthButton.react');
 var MainSection = require('./MainSection.react');
 var React = require('react');
 var TodoStore = require('../stores/TodoStore');
 var UserStore = require('../stores/UserStore');
-var ReactPropTypes = React.PropTypes;
 var UserActions = require('../actions/UserActions');
 
 /**
