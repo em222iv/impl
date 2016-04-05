@@ -8,8 +8,6 @@
  */
 
 var React = require('react');
-var UserActions = require('../actions/UserActions');
-
 var LoginForm = React.createClass({
 
   /**
