@@ -4,7 +4,7 @@
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var UserConstants = require('../constants/UserConstants');
-var db = require('../database.js');
+var db = require('../../../loginImplementation/database.js');
 
 var UserActions = {
 
