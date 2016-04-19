@@ -21,7 +21,8 @@ var app = app || {};
 		events: {
 			'keypress .new-todo': 'createOnEnter',
 			'click .clear-completed': 'clearCompleted',
-			'click .toggle-all': 'toggleAllComplete'
+			'click .toggle-all': 'toggleAllComplete',
+			'click #auth-button': 'login',
 		},
 
 		// At initialization we bind to the relevant events on the `Todos`
@@ -33,6 +34,7 @@ var app = app || {};
 			this.$footer = this.$('.footer');
 			this.$main = this.$('.main');
 			this.$list = $('.todo-list');
+			this.$page = $('.todoapp');
 
 			this.listenTo(app.todos, 'add', this.addOne);
 			this.listenTo(app.todos, 'reset', this.addAll);
@@ -51,6 +53,7 @@ var app = app || {};
 		render: function () {
 			var completed = app.todos.completed().length;
 			var remaining = app.todos.remaining().length;
+			var loggedIn;
 
 			if (app.todos.length) {
 				this.$main.show();
@@ -92,6 +95,11 @@ var app = app || {};
 
 		filterAll: function () {
 			app.todos.each(this.filterOne, this);
+		},
+
+		login: function () {
+				var loggedIn = app.users.toggleLogin(true);
+				console.log(loggedIn);
 		},
 
 		// Generate the attributes for a new Todo item.

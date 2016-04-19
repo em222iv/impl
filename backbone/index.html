@@ -7,23 +7,33 @@
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
 	</head>
 	<body>
+
 		<section class="todoapp">
+
+			<div id="loginform">
+				<button id="auth-button">login</button>
+			</div>
 			<header class="header">
 				<h1>todos</h1>
 				<input class="new-todo" placeholder="What needs to be done?" autofocus>
 			</header>
+
 			<section class="main">
 				<input class="toggle-all" id="toggle-all" type="checkbox">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list"></ul>
 			</section>
+
 			<footer class="footer"></footer>
+
 		</section>
+
 		<footer class="info">
 			<p>Double-click to edit a todo</p>
 			<p>Written by <a href="https://github.com/addyosmani">Addy Osmani</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
+
 		<script type="text/template" id="item-template">
 			<div class="view">
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
@@ -32,6 +42,13 @@
 			</div>
 			<input class="edit" value="<%- title %>">
 		</script>
+
+		<script type="text/template" id="user-template">
+			<input class="edit" value="<%- username %>">
+			<input class="edit" value="<%- password %>">
+			<button id="auth-button">login</button>
+		</script>
+
 		<script type="text/template" id="stats-template">
 			<span class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
 			<ul class="filters">
@@ -49,6 +66,7 @@
 			<button class="clear-completed">Clear completed</button>
 			<% } %>
 		</script>
+
 		<script src="node_modules/todomvc-common/base.js"></script>
 		<script src="node_modules/jquery/dist/jquery.js"></script>
 		<script src="node_modules/underscore/underscore.js"></script>
@@ -56,9 +74,13 @@
 		<script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>
 		<script src="js/models/todo.js"></script>
 		<script src="js/collections/todos.js"></script>
+		<script src="js/models/user.js"></script>
+		<script src="js/collections/users.js"></script>
 		<script src="js/views/todo-view.js"></script>
+		<script src="js/views/user-view.js"></script>
 		<script src="js/views/app-view.js"></script>
 		<script src="js/routers/router.js"></script>
 		<script src="js/app.js"></script>
+
 	</body>
 </html>

@@ -30,6 +30,7 @@ var app = app || {};
 		// **TodoView** in this app, we set a direct reference on the model for
 		// convenience.
 		initialize: function () {
+			console.log(this.model);
 			this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
 			this.listenTo(this.model, 'visible', this.toggleVisible);
