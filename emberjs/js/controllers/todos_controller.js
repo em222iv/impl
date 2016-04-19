@@ -1,9 +1,23 @@
 /*global Todos, Ember */
+//var User = require('../models/user')
 (function () {
 	'use strict';
 
 	Todos.TodosController = Ember.ArrayController.extend({
 		actions: {
+			login: function () {
+				var scope = this;
+				Todos.User.login(scope.username,scope.password).then(function(validLogin) {
+					if(validLogin){
+						scope.set('user',{loggedIn:true})
+					}
+				}).catch (function (error) {
+					console.log('Error: ', error);
+				});
+			},
+			logout: function (){
+				scope.set('user',{loggedIn:false})
+			},
 			createTodo: function () {
 				var title, todo;
 
@@ -18,7 +32,7 @@
 					title: title,
 					isCompleted: false
 				});
-				todo.save();
+				todo.set('todo',todo);
 
 				// Clear the "New Todo" text field
 				this.set('newTitle', '');

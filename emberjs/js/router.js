@@ -1,7 +1,6 @@
 /*global Ember, Todos */
 (function () {
 	'use strict';
-
 	Todos.Router.map(function () {
 		this.resource('todos', { path: '/' }, function () {
 			this.route('active');
@@ -12,6 +11,11 @@
 	Todos.TodosRoute = Ember.Route.extend({
 		model: function () {
 			return this.store.find('todo');
+		},
+		// extended toto model
+		setupController: function(controller, model){
+			this._super(controller,model);
+			controller.set('user', {loggedIn:false});
 		}
 	});
 
