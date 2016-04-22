@@ -29,6 +29,7 @@ var app = app || {};
 		// collection, when items are added or changed. Kick things off by
 		// loading any preexisting todos that might be saved in *localStorage*.
 		initialize: function () {
+			this.$el = $('.todoapp');
 			this.allCheckbox = this.$('.toggle-all')[0];
 			this.$input = this.$('.new-todo');
 			this.$footer = this.$('.footer');
@@ -41,6 +42,7 @@ var app = app || {};
 			this.listenTo(app.todos, 'change:completed', this.filterOne);
 			this.listenTo(app.todos, 'filter', this.filterAll);
 			this.listenTo(app.todos, 'all', _.debounce(this.render, 0));
+			this.listenTo(app.todos, 'change:completed', this.filterOne);
 
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
@@ -51,6 +53,7 @@ var app = app || {};
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function () {
+
 			var completed = app.todos.completed().length;
 			var remaining = app.todos.remaining().length;
 			var loggedIn;
